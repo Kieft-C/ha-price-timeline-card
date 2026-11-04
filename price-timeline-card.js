@@ -754,14 +754,21 @@ class PriceTimelineCard extends LitElement {
     const innerW = width - margin.left - margin.right;
     const innerH = height - margin.top - margin.bottom;
 
-    // user-defined horizontal threshold lines (values in cent, max. 4)
+    // user-defined horizontal threshold lines (max. 4)
+    // value = number in cent/kWh, or an entity id whose state is in €/kWh (like "average")
     const thresholds = (Array.isArray(this.config.thresholds) ? this.config.thresholds : [])
       .slice(0, 4)
-      .map(t => ({
-        value: parseFloat(t?.value),
-        color: t?.color || "red",
-        label: t?.label,
-      }))
+      .map(t => {
+        const raw = t?.value;
+        let value;
+        if (typeof raw === "string" && this._hass?.states?.[raw]) {
+          const st = parseFloat(this._hass.states[raw].state);
+          value = isNaN(st) ? NaN : st * 100; // €/kWh -> cent
+        } else {
+          value = parseFloat(raw); // plain number, cent/kWh
+        }
+        return { value, color: t?.color || "red", label: t?.label };
+      })
       .filter(t => !isNaN(t.value));
 
     const min = Math.min(...parsed.map(p => p.cent), ...thresholds.map(t => t.value)) * 0.9;
