@@ -754,8 +754,18 @@ class PriceTimelineCard extends LitElement {
     const innerW = width - margin.left - margin.right;
     const innerH = height - margin.top - margin.bottom;
 
-    const min = Math.min(...parsed.map(p => p.cent)) * 0.9;
-    const max = Math.max(...parsed.map(p => p.cent)) * 1.05;
+    // user-defined horizontal threshold lines (values in cent, max. 4)
+    const thresholds = (Array.isArray(this.config.thresholds) ? this.config.thresholds : [])
+      .slice(0, 4)
+      .map(t => ({
+        value: parseFloat(t?.value),
+        color: t?.color || "red",
+        label: t?.label,
+      }))
+      .filter(t => !isNaN(t.value));
+
+    const min = Math.min(...parsed.map(p => p.cent), ...thresholds.map(t => t.value)) * 0.9;
+    const max = Math.max(...parsed.map(p => p.cent), ...thresholds.map(t => t.value)) * 1.05;
 
     const xFor = t => margin.left + ((t - start) / (end - start)) * innerW;
     const yFor = v => margin.top + innerH - ((v - min) / (max - min)) * innerH;
@@ -879,6 +889,31 @@ class PriceTimelineCard extends LitElement {
     avgLine.setAttribute("stroke-dasharray", "4 3");
     avgLine.setAttribute("stroke-width", 2);
     svg.appendChild(avgLine);
+
+    // user-defined threshold lines
+    thresholds.forEach((t) => {
+      const yT = yFor(t.value);
+      const tLine = document.createElementNS(svgNS, "line");
+      tLine.setAttribute("x1", margin.left);
+      tLine.setAttribute("x2", width - margin.right);
+      tLine.setAttribute("y1", yT);
+      tLine.setAttribute("y2", yT);
+      tLine.setAttribute("stroke", t.color);
+      tLine.setAttribute("stroke-width", 1.5);
+      svg.appendChild(tLine);
+
+      const tText = document.createElementNS(svgNS, "text");
+      tText.setAttribute("x", width - margin.right - 2);
+      tText.setAttribute("y", yT - 3);
+      tText.setAttribute("text-anchor", "end");
+      tText.setAttribute("font-size", "10px");
+      tText.setAttribute("font-weight", "600");
+      tText.setAttribute("fill", t.color);
+      tText.textContent = t.label
+        ? `${t.label} ${t.value}`
+        : `${t.value}`;
+      svg.appendChild(tText);
+    });
 
 
     // Midnight
