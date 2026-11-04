@@ -1,13 +1,340 @@
-import { LitElement, html, css } from "lit";
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const t$1=globalThis,e$2=t$1.ShadowRoot&&(void 0===t$1.ShadyCSS||t$1.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s$2=Symbol(),o$3=new WeakMap;let n$2 = class n{constructor(t,e,o){if(this._$cssResult$=true,o!==s$2)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e;}get styleSheet(){let t=this.o;const s=this.t;if(e$2&&void 0===t){const e=void 0!==s&&1===s.length;e&&(t=o$3.get(s)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),e&&o$3.set(s,t));}return t}toString(){return this.cssText}};const r$2=t=>new n$2("string"==typeof t?t:t+"",void 0,s$2),i$3=(t,...e)=>{const o=1===t.length?t[0]:e.reduce((e,s,o)=>e+(t=>{if(true===t._$cssResult$)return t.cssText;if("number"==typeof t)return t;throw Error("Value passed to 'css' function must be a 'css' function result: "+t+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(s)+t[o+1],t[0]);return new n$2(o,t,s$2)},S$1=(s,o)=>{if(e$2)s.adoptedStyleSheets=o.map(t=>t instanceof CSSStyleSheet?t:t.styleSheet);else for(const e of o){const o=document.createElement("style"),n=t$1.litNonce;void 0!==n&&o.setAttribute("nonce",n),o.textContent=e.cssText,s.appendChild(o);}},c$2=e$2?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const s of t.cssRules)e+=s.cssText;return r$2(e)})(t):t;
 
-import en from "./localize/en.js";
-import de from "./localize/de.js";
-import es from "./localize/es.js";
-import fr from "./localize/fr.js";
-import da from "./localize/da.js";
-import nl from "./localize/nl.js";
-import no from "./localize/no.js";
-import sv from "./localize/sv.js";
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */const{is:i$2,defineProperty:e$1,getOwnPropertyDescriptor:h$1,getOwnPropertyNames:r$1,getOwnPropertySymbols:o$2,getPrototypeOf:n$1}=Object,a$1=globalThis,c$1=a$1.trustedTypes,l$1=c$1?c$1.emptyScript:"",p$1=a$1.reactiveElementPolyfillSupport,d$1=(t,s)=>t,u$1={toAttribute(t,s){switch(s){case Boolean:t=t?l$1:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t);}return t},fromAttribute(t,s){let i=t;switch(s){case Boolean:i=null!==t;break;case Number:i=null===t?null:Number(t);break;case Object:case Array:try{i=JSON.parse(t);}catch(t){i=null;}}return i}},f$1=(t,s)=>!i$2(t,s),b$1={attribute:true,type:String,converter:u$1,reflect:false,useDefault:false,hasChanged:f$1};Symbol.metadata??=Symbol("metadata"),a$1.litPropertyMetadata??=new WeakMap;let y$1 = class y extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t);}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,s=b$1){if(s.state&&(s.attribute=false),this._$Ei(),this.prototype.hasOwnProperty(t)&&((s=Object.create(s)).wrapped=true),this.elementProperties.set(t,s),!s.noAccessor){const i=Symbol(),h=this.getPropertyDescriptor(t,i,s);void 0!==h&&e$1(this.prototype,t,h);}}static getPropertyDescriptor(t,s,i){const{get:e,set:r}=h$1(this.prototype,t)??{get(){return this[s]},set(t){this[s]=t;}};return {get:e,set(s){const h=e?.call(this);r?.call(this,s),this.requestUpdate(t,h,i);},configurable:true,enumerable:true}}static getPropertyOptions(t){return this.elementProperties.get(t)??b$1}static _$Ei(){if(this.hasOwnProperty(d$1("elementProperties")))return;const t=n$1(this);t.finalize(),void 0!==t.l&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties);}static finalize(){if(this.hasOwnProperty(d$1("finalized")))return;if(this.finalized=true,this._$Ei(),this.hasOwnProperty(d$1("properties"))){const t=this.properties,s=[...r$1(t),...o$2(t)];for(const i of s)this.createProperty(i,t[i]);}const t=this[Symbol.metadata];if(null!==t){const s=litPropertyMetadata.get(t);if(void 0!==s)for(const[t,i]of s)this.elementProperties.set(t,i);}this._$Eh=new Map;for(const[t,s]of this.elementProperties){const i=this._$Eu(t,s);void 0!==i&&this._$Eh.set(i,t);}this.elementStyles=this.finalizeStyles(this.styles);}static finalizeStyles(s){const i=[];if(Array.isArray(s)){const e=new Set(s.flat(1/0).reverse());for(const s of e)i.unshift(c$2(s));}else void 0!==s&&i.push(c$2(s));return i}static _$Eu(t,s){const i=s.attribute;return  false===i?void 0:"string"==typeof i?i:"string"==typeof t?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=false,this.hasUpdated=false,this._$Em=null,this._$Ev();}_$Ev(){this._$ES=new Promise(t=>this.enableUpdating=t),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach(t=>t(this));}addController(t){(this._$EO??=new Set).add(t),void 0!==this.renderRoot&&this.isConnected&&t.hostConnected?.();}removeController(t){this._$EO?.delete(t);}_$E_(){const t=new Map,s=this.constructor.elementProperties;for(const i of s.keys())this.hasOwnProperty(i)&&(t.set(i,this[i]),delete this[i]);t.size>0&&(this._$Ep=t);}createRenderRoot(){const t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return S$1(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(true),this._$EO?.forEach(t=>t.hostConnected?.());}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach(t=>t.hostDisconnected?.());}attributeChangedCallback(t,s,i){this._$AK(t,i);}_$ET(t,s){const i=this.constructor.elementProperties.get(t),e=this.constructor._$Eu(t,i);if(void 0!==e&&true===i.reflect){const h=(void 0!==i.converter?.toAttribute?i.converter:u$1).toAttribute(s,i.type);this._$Em=t,null==h?this.removeAttribute(e):this.setAttribute(e,h),this._$Em=null;}}_$AK(t,s){const i=this.constructor,e=i._$Eh.get(t);if(void 0!==e&&this._$Em!==e){const t=i.getPropertyOptions(e),h="function"==typeof t.converter?{fromAttribute:t.converter}:void 0!==t.converter?.fromAttribute?t.converter:u$1;this._$Em=e;const r=h.fromAttribute(s,t.type);this[e]=r??this._$Ej?.get(e)??r,this._$Em=null;}}requestUpdate(t,s,i,e=false,h){if(void 0!==t){const r=this.constructor;if(false===e&&(h=this[t]),i??=r.getPropertyOptions(t),!((i.hasChanged??f$1)(h,s)||i.useDefault&&i.reflect&&h===this._$Ej?.get(t)&&!this.hasAttribute(r._$Eu(t,i))))return;this.C(t,s,i);} false===this.isUpdatePending&&(this._$ES=this._$EP());}C(t,s,{useDefault:i,reflect:e,wrapped:h},r){i&&!(this._$Ej??=new Map).has(t)&&(this._$Ej.set(t,r??s??this[t]),true!==h||void 0!==r)||(this._$AL.has(t)||(this.hasUpdated||i||(s=void 0),this._$AL.set(t,s)),true===e&&this._$Em!==t&&(this._$Eq??=new Set).add(t));}async _$EP(){this.isUpdatePending=true;try{await this._$ES;}catch(t){Promise.reject(t);}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[t,s]of this._$Ep)this[t]=s;this._$Ep=void 0;}const t=this.constructor.elementProperties;if(t.size>0)for(const[s,i]of t){const{wrapped:t}=i,e=this[s];true!==t||this._$AL.has(s)||void 0===e||this.C(s,void 0,i,e);}}let t=false;const s=this._$AL;try{t=this.shouldUpdate(s),t?(this.willUpdate(s),this._$EO?.forEach(t=>t.hostUpdate?.()),this.update(s)):this._$EM();}catch(s){throw t=false,this._$EM(),s}t&&this._$AE(s);}willUpdate(t){}_$AE(t){this._$EO?.forEach(t=>t.hostUpdated?.()),this.hasUpdated||(this.hasUpdated=true,this.firstUpdated(t)),this.updated(t);}_$EM(){this._$AL=new Map,this.isUpdatePending=false;}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return  true}update(t){this._$Eq&&=this._$Eq.forEach(t=>this._$ET(t,this[t])),this._$EM();}updated(t){}firstUpdated(t){}};y$1.elementStyles=[],y$1.shadowRootOptions={mode:"open"},y$1[d$1("elementProperties")]=new Map,y$1[d$1("finalized")]=new Map,p$1?.({ReactiveElement:y$1}),(a$1.reactiveElementVersions??=[]).push("2.1.2");
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const t=globalThis,i$1=t=>t,s$1=t.trustedTypes,e=s$1?s$1.createPolicy("lit-html",{createHTML:t=>t}):void 0,h="$lit$",o$1=`lit$${Math.random().toFixed(9).slice(2)}$`,n="?"+o$1,r=`<${n}>`,l=document,c=()=>l.createComment(""),a=t=>null===t||"object"!=typeof t&&"function"!=typeof t,u=Array.isArray,d=t=>u(t)||"function"==typeof t?.[Symbol.iterator],f="[ \t\n\f\r]",v=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,_=/-->/g,m=/>/g,p=RegExp(`>|${f}(?:([^\\s"'>=/]+)(${f}*=${f}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),g=/'/g,$=/"/g,y=/^(?:script|style|textarea|title)$/i,x=t=>(i,...s)=>({_$litType$:t,strings:i,values:s}),b=x(1),E=Symbol.for("lit-noChange"),A=Symbol.for("lit-nothing"),C=new WeakMap,P=l.createTreeWalker(l,129);function V(t,i){if(!u(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==e?e.createHTML(i):i}const N=(t,i)=>{const s=t.length-1,e=[];let n,l=2===i?"<svg>":3===i?"<math>":"",c=v;for(let i=0;i<s;i++){const s=t[i];let a,u,d=-1,f=0;for(;f<s.length&&(c.lastIndex=f,u=c.exec(s),null!==u);)f=c.lastIndex,c===v?"!--"===u[1]?c=_:void 0!==u[1]?c=m:void 0!==u[2]?(y.test(u[2])&&(n=RegExp("</"+u[2],"g")),c=p):void 0!==u[3]&&(c=p):c===p?">"===u[0]?(c=n??v,d=-1):void 0===u[1]?d=-2:(d=c.lastIndex-u[2].length,a=u[1],c=void 0===u[3]?p:'"'===u[3]?$:g):c===$||c===g?c=p:c===_||c===m?c=v:(c=p,n=void 0);const x=c===p&&t[i+1].startsWith("/>")?" ":"";l+=c===v?s+r:d>=0?(e.push(a),s.slice(0,d)+h+s.slice(d)+o$1+x):s+o$1+(-2===d?i:x);}return [V(t,l+(t[s]||"<?>")+(2===i?"</svg>":3===i?"</math>":"")),e]};class S{constructor({strings:t,_$litType$:i},e){let r;this.parts=[];let l=0,a=0;const u=t.length-1,d=this.parts,[f,v]=N(t,i);if(this.el=S.createElement(f,e),P.currentNode=this.el.content,2===i||3===i){const t=this.el.content.firstChild;t.replaceWith(...t.childNodes);}for(;null!==(r=P.nextNode())&&d.length<u;){if(1===r.nodeType){if(r.hasAttributes())for(const t of r.getAttributeNames())if(t.endsWith(h)){const i=v[a++],s=r.getAttribute(t).split(o$1),e=/([.?@])?(.*)/.exec(i);d.push({type:1,index:l,name:e[2],strings:s,ctor:"."===e[1]?I:"?"===e[1]?L:"@"===e[1]?z:H}),r.removeAttribute(t);}else t.startsWith(o$1)&&(d.push({type:6,index:l}),r.removeAttribute(t));if(y.test(r.tagName)){const t=r.textContent.split(o$1),i=t.length-1;if(i>0){r.textContent=s$1?s$1.emptyScript:"";for(let s=0;s<i;s++)r.append(t[s],c()),P.nextNode(),d.push({type:2,index:++l});r.append(t[i],c());}}}else if(8===r.nodeType)if(r.data===n)d.push({type:2,index:l});else {let t=-1;for(;-1!==(t=r.data.indexOf(o$1,t+1));)d.push({type:7,index:l}),t+=o$1.length-1;}l++;}}static createElement(t,i){const s=l.createElement("template");return s.innerHTML=t,s}}function M(t,i,s=t,e){if(i===E)return i;let h=void 0!==e?s._$Co?.[e]:s._$Cl;const o=a(i)?void 0:i._$litDirective$;return h?.constructor!==o&&(h?._$AO?.(false),void 0===o?h=void 0:(h=new o(t),h._$AT(t,s,e)),void 0!==e?(s._$Co??=[])[e]=h:s._$Cl=h),void 0!==h&&(i=M(t,h._$AS(t,i.values),h,e)),i}class R{constructor(t,i){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){const{el:{content:i},parts:s}=this._$AD,e=(t?.creationScope??l).importNode(i,true);P.currentNode=e;let h=P.nextNode(),o=0,n=0,r=s[0];for(;void 0!==r;){if(o===r.index){let i;2===r.type?i=new k(h,h.nextSibling,this,t):1===r.type?i=new r.ctor(h,r.name,r.strings,this,t):6===r.type&&(i=new Z(h,this,t)),this._$AV.push(i),r=s[++n];}o!==r?.index&&(h=P.nextNode(),o++);}return P.currentNode=l,e}p(t){let i=0;for(const s of this._$AV) void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class k{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,i,s,e){this.type=2,this._$AH=A,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cv=e?.isConnected??true;}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===t?.nodeType&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=M(this,t,i),a(t)?t===A||null==t||""===t?(this._$AH!==A&&this._$AR(),this._$AH=A):t!==this._$AH&&t!==E&&this._(t):void 0!==t._$litType$?this.$(t):void 0!==t.nodeType?this.T(t):d(t)?this.k(t):this._(t);}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t));}_(t){this._$AH!==A&&a(this._$AH)?this._$AA.nextSibling.data=t:this.T(l.createTextNode(t)),this._$AH=t;}$(t){const{values:i,_$litType$:s}=t,e="number"==typeof s?this._$AC(t):(void 0===s.el&&(s.el=S.createElement(V(s.h,s.h[0]),this.options)),s);if(this._$AH?._$AD===e)this._$AH.p(i);else {const t=new R(e,this),s=t.u(this.options);t.p(i),this.T(s),this._$AH=t;}}_$AC(t){let i=C.get(t.strings);return void 0===i&&C.set(t.strings,i=new S(t)),i}k(t){u(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const h of t)e===i.length?i.push(s=new k(this.O(c()),this.O(c()),this,this.options)):s=i[e],s._$AI(h),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,s){for(this._$AP?.(false,true,s);t!==this._$AB;){const s=i$1(t).nextSibling;i$1(t).remove(),t=s;}}setConnected(t){ void 0===this._$AM&&(this._$Cv=t,this._$AP?.(t));}}class H{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,i,s,e,h){this.type=1,this._$AH=A,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=h,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=A;}_$AI(t,i=this,s,e){const h=this.strings;let o=false;if(void 0===h)t=M(this,t,i,0),o=!a(t)||t!==this._$AH&&t!==E,o&&(this._$AH=t);else {const e=t;let n,r;for(t=h[0],n=0;n<h.length-1;n++)r=M(this,e[s+n],i,n),r===E&&(r=this._$AH[n]),o||=!a(r)||r!==this._$AH[n],r===A?t=A:t!==A&&(t+=(r??"")+h[n+1]),this._$AH[n]=r;}o&&!e&&this.j(t);}j(t){t===A?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??"");}}class I extends H{constructor(){super(...arguments),this.type=3;}j(t){this.element[this.name]=t===A?void 0:t;}}class L extends H{constructor(){super(...arguments),this.type=4;}j(t){this.element.toggleAttribute(this.name,!!t&&t!==A);}}class z extends H{constructor(t,i,s,e,h){super(t,i,s,e,h),this.type=5;}_$AI(t,i=this){if((t=M(this,t,i,0)??A)===E)return;const s=this._$AH,e=t===A&&s!==A||t.capture!==s.capture||t.once!==s.once||t.passive!==s.passive,h=t!==A&&(s===A||e);e&&this.element.removeEventListener(this.name,this,s),h&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t);}}class Z{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){M(this,t);}}const B=t.litHtmlPolyfillSupport;B?.(S,k),(t.litHtmlVersions??=[]).push("3.3.2");const D=(t,i,s)=>{const e=s?.renderBefore??i;let h=e._$litPart$;if(void 0===h){const t=s?.renderBefore??null;e._$litPart$=h=new k(i.insertBefore(c(),t),t,void 0,s??{});}return h._$AI(t),h};
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */const s=globalThis;class i extends y$1{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0;}createRenderRoot(){const t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){const r=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=D(r,this.renderRoot,this.renderOptions);}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(true);}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(false);}render(){return E}}i._$litElement$=true,i["finalized"]=true,s.litElementHydrateSupport?.({LitElement:i});const o=s.litElementPolyfillSupport;o?.({LitElement:i});(s.litElementVersions??=[]).push("4.2.2");
+
+var en = {
+  no_data: "No data available for the day – are we still waiting for the prices?",
+  no_data_attributes: "Your entity has no data attributes - see the readme",
+  no_data_prices: "Your entity has no prices in the correct format - see the readme",
+  missing_price: "Please specify 'price' sensor in the config",
+  label_today_price: "Today's price",
+  label_time_nextDay: "Price range",
+  label_average_price: "Average Price",
+  label_price: "Price",
+  label_day: "Day",
+  label_start: "Start",
+  label_end: "End",
+  label_duration: "Duration",
+  label_name: "Name",
+  unit_cent: "Cent",
+  label_tomorrow_price: "Tomorrow's price",
+  editor_theme_light: "Light",
+  editor_theme_dark: "Dark",
+  editor_theme_system: "System",
+  editor_price_label: "Price sensor",
+  editor_price_desc: "Sensor that contains the current price (in attribute data)",
+  editor_average_label: "Optional: Average value",
+  editor_average_desc: "Number (e.g. 0.225) indicating the average price (optional)",
+  editor_theme_label: "Theme",
+  editor_theme_desc: "Display mode of the card.",
+  editor_start_today: "Today",
+  editor_start_tomorrow: "Tomorrow",
+  editor_start_yesterday: "Yesterday",
+  editor_start_view_label: "Start View",
+  editor_start_view_desc: "The view that should be displayed by default",
+  editor_view_mode_label: "View Mode",
+  editor_currency_label: "Currency",
+  editor_currency_desc: "Specify a custom currency",
+  editor_day_switch_label: "Day Switch",
+  editor_day_switch_desc: "Shows or hides the day switch",
+  editor_cheap_times_label: "Cheap Times",
+  editor_cheap_times_desc: "Display of cheap time intervals",
+};
+
+var de = {
+  no_data: "Keine Daten für den Tag vorhanden – warten wir noch auf die Preise?",
+  no_data_attributes: "Deine Entität hat kein data-Attributes - siehe readme",
+  no_data_prices: "Deine Entität hat keine Preise im richtigen Format - siehe readme",
+  missing_price: "Bitte 'price' Sensor in der config angeben",
+  label_today_price: "Heutiger Preis",
+  label_time_nextDay: "Preisspanne",
+  unit_cent: "Cent",
+  label_tomorrow_price: "Morgiger Preis",
+  label_average_price: "Durchschnittspreis",
+  label_price: "Preis",
+  label_day: "Tag",
+  label_start: "Start",
+  label_end: "Ende",
+  label_duration: "Dauer",
+  label_name: "Name",
+  editor_theme_light: "Hell",
+  editor_theme_dark: "Dunkel",
+  editor_theme_system: "System",
+  editor_price_label: "Preis-Sensor",
+  editor_price_desc: "Sensor, der den aktuellen Preis enthält (in Attributen data)",
+  editor_average_label: "Optional: Durchschnittswert",
+  editor_average_desc: "Zahl (z.B. 0.225), die den Durchschnitts-Preis angibt (optional)",
+  editor_theme_label: "Thema",
+  editor_theme_desc: "Darstellungsmodus der Karte.",
+  editor_start_today: "Heute",
+  editor_start_tomorrow: "Morgen",
+  editor_start_yesterday: "Gestern",
+  editor_start_view_label: "Start-Ansicht",
+  editor_start_view_desc: "Ansicht welche standardmäßig angezeigt werden soll",
+  editor_view_mode_label: "Ansicht-Modus",
+  editor_currency_label: "Währung",
+  editor_currency_desc: "Eigene Währung angeben",
+  editor_day_switch_label: "Tag Umschalter",
+  editor_day_switch_desc: "Blendet den Tag Umschalter ein oder aus",
+  editor_cheap_times_label: "Günstige Zeiten",
+  editor_cheap_times_desc: "Anzeige von günstigen Zeitintervallen",
+};
+
+var es = {
+  no_data: "No hay datos disponibles para el día – ¿esperamos los precios?",
+  no_data_attributes: "Tu entidad no tiene atributos de datos - consulta el readme",
+  no_data_prices: "Tu entidad no tiene precios en el formato correcto - consulta el readme",
+  missing_price: "Por favor especifique el sensor 'price' en la configuración",
+  label_today_price: "Precio de hoy",
+  label_time_nextDay: "Rango de precios",
+  label_average_price: "Precio medio",
+  label_price: "Precio",
+  label_day: "Día",
+  label_start: "Inicio",
+  label_end: "Fin",
+  label_duration: "Duración",
+  label_name: "Nombre",
+  unit_cent: "Céntimos",
+  label_tomorrow_price: "Precio de mañana",
+  editor_theme_light: "Claro",
+  editor_theme_dark: "Oscuro",
+  editor_theme_system: "Sistema",
+  editor_price_label: "Sensor de precio",
+  editor_price_desc: "Sensor que contiene el precio actual (en el atributo data)",
+  editor_average_label: "Opcional: Valor promedio",
+  editor_average_desc: "Número (p. ej. 0.225) que indica el precio medio (opcional)",
+  editor_theme_label: "Tema",
+  editor_theme_desc: "Modo de visualización de la tarjeta.",
+  editor_start_today: "Hoy",
+  editor_start_tomorrow: "Mañana",
+  editor_start_yesterday: "Ayer",
+  editor_start_view_label: "Vista inicial",
+  editor_start_view_desc: "Vista que se mostrará por defecto",
+  editor_view_mode_label: "Modo de vista",
+  editor_currency_label: "Moneda",
+  editor_currency_desc: "Especifique una moneda personalizada",
+  editor_day_switch_label: "Conmutador de día",
+  editor_day_switch_desc: "Muestra u oculta el conmutador de día",
+  editor_cheap_times_label: "Tiempos económicos",
+  editor_cheap_times_desc: "Visualización de intervalos de tiempo económicos",
+};
+
+var fr = {
+  no_data: "Aucune donnée disponible pour la journée – attendons les prix ?",
+  no_data_attributes: "Votre entité n'a pas d'attributs de données - voir le readme",
+  no_data_prices: "Votre entité n'a pas de prix au format correct - voir le readme",
+  missing_price: "Veuillez indiquer le capteur 'price' dans la configuration",
+  label_today_price: "Prix du jour",
+  label_time_nextDay: "Plage de prix",
+  label_average_price: "Prix moyen",
+  label_price: "Prix",
+  label_day: "Jour",
+  label_start: "Début",
+  label_end: "Fin",
+  label_duration: "Durée",
+  label_name: "Nom",
+  unit_cent: "Centimes",
+  label_tomorrow_price: "Prix de demain",
+  editor_theme_light: "Clair",
+  editor_theme_dark: "Sombre",
+  editor_theme_system: "Système",
+  editor_price_label: "Capteur de prix",
+  editor_price_desc: "Capteur qui contient le prix actuel (dans l’attribut data)",
+  editor_average_label: "Optionnel : Valeur moyenne",
+  editor_average_desc: "Nombre (p. ex. 0.225) indiquant le prix moyen (optionnel)",
+  editor_theme_label: "Thème",
+  editor_theme_desc: "Mode d’affichage de la carte.",
+  editor_start_today: "Aujourd’hui",
+  editor_start_tomorrow: "Demain",
+  editor_start_yesterday: "Hier",
+  editor_start_view_label: "Vue de démarrage",
+  editor_start_view_desc: "Vue à afficher par défaut",
+  editor_view_mode_label: "Mode d’affichage",
+  editor_currency_label: "Monnaie",
+  editor_currency_desc: "Indiquez une devise personnalisée",
+  editor_day_switch_label: "Commutateur de jour",
+  editor_day_switch_desc: "Affiche ou masque le commutateur de jour",
+  editor_cheap_times_label: "Heures avantageuses",
+  editor_cheap_times_desc: "Affichage des intervalles horaires avantageux",
+};
+
+var da = {
+  no_data: "Ingen data for dagen – venter vi stadig på priserne?",
+  no_data_attributes: "Din enhed har ingen data-attributter – se readme",
+  no_data_prices: "Din enhed har ingen priser i det rigtige format – se readme",
+  missing_price: "Angiv venligst 'price'-sensoren i konfigurationen",
+  label_today_price: "Dagens pris",
+  label_time_nextDay: "Tidsinterval",
+  unit_cent: "Cent",
+  label_tomorrow_price: "Morgendagens pris",
+  label_average_price: "Gennemsnitspris",
+  label_price: "Pris",
+  label_day: "Dag",
+  label_start: "Start",
+  label_end: "Slut",
+  label_duration: "Varighed",
+  label_name: "Navn",
+  editor_theme_light: "Lyst",
+  editor_theme_dark: "Mørkt",
+  editor_theme_system: "System",
+  editor_price_label: "Pris-sensor",
+  editor_price_desc: "Sensor, der indeholder den aktuelle pris (i data-attributter)",
+  editor_average_label: "Valgfrit: Gennemsnitsværdi",
+  editor_average_desc: "Tal (f.eks. 0.225), der angiver gennemsnitsprisen (valgfrit)",
+  editor_theme_label: "Tema",
+  editor_theme_desc: "Visningstilstand for kortet.",
+  editor_start_today: "I dag",
+  editor_start_tomorrow: "I morgen",
+  editor_start_yesterday: "I går",
+  editor_start_view_label: "Startvisning",
+  editor_start_view_desc: "Visning, der vises som standard",
+  editor_view_mode_label: "Visningstilstand",
+  editor_currency_label: "Valuta",
+  editor_currency_desc: "Angiv egen valuta",
+  editor_day_switch_label: "Dagskifter",
+  editor_day_switch_desc: "Viser eller skjuler dagskifteren",
+  editor_cheap_times_label: "Billige tider",
+  editor_cheap_times_desc: "Visning af billige tidsintervaller",
+};
+
+var nl = {
+  no_data: "Geen gegevens voor vandaag – wachten we nog op de prijzen?",
+  no_data_attributes: "Je entiteit heeft geen data-attributen – zie readme",
+  no_data_prices: "Je entiteit heeft geen prijzen in het juiste formaat – zie readme",
+  missing_price: "Geef alstublieft de 'price'-sensor op in de configuratie",
+  label_today_price: "Prijs van vandaag",
+  label_time_nextDay: "Tijdsperiode",
+  unit_cent: "Cent",
+  label_tomorrow_price: "Prijs van morgen",
+  label_average_price: "Gemiddelde prijs",
+  label_price: "Prijs",
+  label_day: "Dag",
+  label_start: "Start",
+  label_end: "Einde",
+  label_duration: "Duur",
+  label_name: "Naam",
+  editor_theme_light: "Licht",
+  editor_theme_dark: "Donker",
+  editor_theme_system: "Systeem",
+  editor_price_label: "Prijs-sensor",
+  editor_price_desc: "Sensor die de actuele prijs bevat (in data-attributen)",
+  editor_average_label: "Optioneel: Gemiddelde waarde",
+  editor_average_desc: "Getal (bijv. 0.225) dat de gemiddelde prijs aangeeft (optioneel)",
+  editor_theme_label: "Thema",
+  editor_theme_desc: "Weergavemodus van de kaart.",
+  editor_start_today: "Vandaag",
+  editor_start_tomorrow: "Morgen",
+  editor_start_yesterday: "Gisteren",
+  editor_start_view_label: "Startweergave",
+  editor_start_view_desc: "Weergave die standaard wordt getoond",
+  editor_view_mode_label: "Weergavemodus",
+  editor_currency_label: "Valuta",
+  editor_currency_desc: "Eigen valuta opgeven",
+  editor_day_switch_label: "Dagwisselaar",
+  editor_day_switch_desc: "Toont of verbergt de dagwisselaar",
+  editor_cheap_times_label: "Goedkope tijden",
+  editor_cheap_times_desc: "Weergave van goedkope tijdsintervallen",
+};
+
+var no = {
+  no_data: "Ingen data for dagen – venter vi fortsatt på prisene?",
+  no_data_attributes: "Enheten din har ingen data-attributter – se readme",
+  no_data_prices: "Enheten din har ingen priser i riktig format – se readme",
+  missing_price: "Vennligst oppgi 'price'-sensoren i konfigurasjonen",
+  label_today_price: "Dagens pris",
+  label_time_nextDay: "Tidsintervall",
+  unit_cent: "Cent",
+  label_tomorrow_price: "Morgendagens pris",
+  label_average_price: "Gjennomsnittspris",
+  label_price: "Pris",
+  label_day: "Dag",
+  label_start: "Start",
+  label_end: "Slutt",
+  label_duration: "Varighet",
+  label_name: "Navn",
+  editor_theme_light: "Lyst",
+  editor_theme_dark: "Mørkt",
+  editor_theme_system: "System",
+  editor_price_label: "Pris-sensor",
+  editor_price_desc: "Sensor som inneholder gjeldende pris (i data-attributter)",
+  editor_average_label: "Valgfritt: Gjennomsnittsverdi",
+  editor_average_desc: "Tall (f.eks. 0.225) som viser gjennomsnittsprisen (valgfritt)",
+  editor_theme_label: "Tema",
+  editor_theme_desc: "Visningsmodus for kortet.",
+  editor_start_today: "I dag",
+  editor_start_tomorrow: "I morgen",
+  editor_start_yesterday: "I går",
+  editor_start_view_label: "Startvisning",
+  editor_start_view_desc: "Visningen som vises som standard",
+  editor_view_mode_label: "Visningsmodus",
+  editor_currency_label: "Valuta",
+  editor_currency_desc: "Angi egen valuta",
+  editor_day_switch_label: "Dagveksler",
+  editor_day_switch_desc: "Viser eller skjuler dagveksleren",
+  editor_cheap_times_label: "Billige tider",
+  editor_cheap_times_desc: "Visning av billige tidsintervaller",
+};
+
+var sv = {
+  no_data: "Inga data för dagen – vi väntar fortfarande på priserna?",
+  no_data_attributes: "Din entitet har inga data-attribut – se readme",
+  no_data_prices: "Din entitet har inga priser i rätt format – se readme",
+  missing_price: "Vänligen ange 'price'-sensorn i konfigurationen",
+  label_today_price: "Dagens pris",
+  label_time_nextDay: "Tidsintervall",
+  unit_cent: "Cent",
+  label_tomorrow_price: "Morgondagens pris",
+  label_average_price: "Genomsnittspris",
+  label_price: "Pris",
+  label_day: "Dag",
+  label_start: "Start",
+  label_end: "Slut",
+  label_duration: "Varaktighet",
+  label_name: "Namn",
+  editor_theme_light: "Ljus",
+  editor_theme_dark: "Mörk",
+  editor_theme_system: "System",
+  editor_price_label: "Pris-sensor",
+  editor_price_desc: "Sensor som innehåller det aktuella priset (i attributet data)",
+  editor_average_label: "Valfritt: Genomsnittsvärde",
+  editor_average_desc: "Tal (t.ex. 0.225) som anger genomsnittspriset (valfritt)",
+  editor_theme_label: "Tema",
+  editor_theme_desc: "Visningsläge för kortet.",
+  editor_start_today: "Idag",
+  editor_start_tomorrow: "Imorgon",
+  editor_start_yesterday: "Igår",
+  editor_start_view_label: "Startvy",
+  editor_start_view_desc: "Vy som visas som standard",
+  editor_view_mode_label: "Visningsläge",
+  editor_currency_label: "Valuta",
+  editor_currency_desc: "Ange egen valuta",
+  editor_day_switch_label: "Dagsväxlare",
+  editor_day_switch_desc: "Visar eller döljer dagsväxlaren",
+  editor_cheap_times_label: "Billiga tider",
+  editor_cheap_times_desc: "Visning av billiga tidsintervall",
+};
 
 const languages = { en, de, es, fr, da, nl, no, sv };
 function localize(key, lang) {
@@ -31,7 +358,7 @@ const _localISODateTime = (d) => {
   return `${y}-${m}-${day}T${hh}:${mm}:${ss}`;
 };
 
-class PriceTimelineCard extends LitElement {
+class PriceTimelineCard extends i {
 
   constructor() {
     super();
@@ -95,7 +422,7 @@ class PriceTimelineCard extends LitElement {
   }
 
   static get styles() {
-    return css`
+    return i$3`
             :host {
               --color-bg-light:#fff;
               --color-text-light:#000;
@@ -983,8 +1310,8 @@ class PriceTimelineCard extends LitElement {
     }
     if (now >= start && now <= end) {
 
-      const cx = xFor(new Date(data[currentIndex].start_time))
-      const cy = yFor(data[currentIndex].price_per_kwh * 100)
+      const cx = xFor(new Date(data[currentIndex].start_time));
+      const cy = yFor(data[currentIndex].price_per_kwh * 100);
 
       const color = (data[currentIndex].price_per_kwh * 100) > average ? "--orange" : "--turquoise";
       const circle = document.createElementNS(svgNS, "circle");
@@ -1124,7 +1451,7 @@ class PriceTimelineCard extends LitElement {
   //NO DATA
   //---------------------   
   _renderNoData(lang) {
-    return html`
+    return b`
             <div class="ticker-container">
                 <svg class="ticker-svg" viewBox="0 0 480 60">
                     <polyline points="0,30 40,30 60,10 80,50 100,30 140,30 160,20 180,40 200,30 240,30 260,10 280,50 300,30 340,30 360,20 380,40 400,30 440,30 460,15 480,45"/>
@@ -1139,7 +1466,7 @@ class PriceTimelineCard extends LitElement {
   //NO PRICES
   //---------------------   
   _renderNoPrices(lang) {
-    return html`<div>${localize("no_data_prices", lang)}</div>`;
+    return b`<div>${localize("no_data_prices", lang)}</div>`;
   }
 
 
@@ -1147,7 +1474,7 @@ class PriceTimelineCard extends LitElement {
   //NO ATTRIBUTE
   //---------------------   
   _renderNoAttributes(lang) {
-    return html`<div>${localize("no_data_attributes", lang)}</div>`;
+    return b`<div>${localize("no_data_attributes", lang)}</div>`;
   }
 
   // --------------------
@@ -1156,7 +1483,7 @@ class PriceTimelineCard extends LitElement {
   _renderToggler(lang) {
     const activeClass = this._dayOffset === 0 ? "active-today" : "active-tomorrow";
 
-    return html`
+    return b`
       <div class="day-toggle no-tap">
         <div class="toggle-button ${activeClass}" @click=${this._toggleDayView}>
           <div class="toggle-indicator"></div>
@@ -1171,7 +1498,7 @@ class PriceTimelineCard extends LitElement {
   //SLIDER
   //---------------------
   _renderSlider(data, currentIndex) {
-    return html` 
+    return b` 
         <div class="slider-container no-tap">
            <input type="range" min="0" max="${data.length - 1}" .value="${currentIndex}" @input="${this._onSliderChange}" />
         </div>
@@ -1185,7 +1512,7 @@ class PriceTimelineCard extends LitElement {
   _renderCheapTimes(futurePhases) {
     let index = 0;
     if (Object.keys(futurePhases).length > 0) {
-      return html`
+      return b`
             <div class="cheap-phases">
               <table>
                 <thead>
@@ -1208,7 +1535,7 @@ class PriceTimelineCard extends LitElement {
           const hours = Math.floor(mins / 60);
           const rmins = mins % 60;
           const durationStr = `${hours}h ${rmins}m`;
-          return html`
+          return b`
                         <tr>
                           <td>(${++index})</td>
                           <td>${day}</td>
@@ -1251,7 +1578,7 @@ class PriceTimelineCard extends LitElement {
     let timeLabel = this._getDataTimeLabel(data, currentIndex);
 
 
-    return html`
+    return b`
             <div class="header">
                 <div class="header-left">
                     <div class="time">${timeLabel}</div>
@@ -1275,16 +1602,16 @@ class PriceTimelineCard extends LitElement {
       let borderRadius = "";
       if (prevColor !== color) borderRadius += "border-top-left-radius:10px; border-bottom-left-radius:10px;";
       if (nextColor !== color) borderRadius += "border-top-right-radius:10px; border-bottom-right-radius:10px;";
-      return html`<div class="slot ${faded} ${marker}" style="background:${color};${borderRadius};--progress:${i === currentIndex ? progress : 0}"></div>`;
+      return b`<div class="slot ${faded} ${marker}" style="background:${color};${borderRadius};--progress:${i === currentIndex ? progress : 0}"></div>`;
     })}
             </div>
             <div class="scale">
                 ${Array.from({ length: 25 }).map((_, i) => {
       const showHour = i % 6 === 0 || i === 24;
-      return html`
+      return b`
                         <div class="tick">
                             <div class="dot ${showHour ? "" : "faded"}"></div>
-                            ${showHour ? html`<div class="hour">${String(i % 24).padStart(2, "0")}</div>` : ""}
+                            ${showHour ? b`<div class="hour">${String(i % 24).padStart(2, "0")}</div>` : ""}
                         </div>`;
     })}
             </div>
@@ -1309,7 +1636,7 @@ class PriceTimelineCard extends LitElement {
     const circleColor = currentPrice > avg ? "var(--orange)" : "var(--turquoise)";
     const timeLabel = this._getDataTimeLabel(data, currentIndex);
 
-    return html`
+    return b`
             <div class="circle-container">
                 <svg width="150" height="150">
                     <circle cx="75" cy="75" r="${radius}" stroke="var(--card-dot)" stroke-width="10" fill="none" opacity="0.2"></circle>
@@ -1332,7 +1659,7 @@ class PriceTimelineCard extends LitElement {
   //---------------------
   _renderChart(data, dataIntervalls, currentIndex, avg, lang) {
     const circleColor = data[currentIndex].price_per_kwh > avg ? "var(--orange)" : "var(--turquoise)";
-    return html`
+    return b`
                 <div>
                     <h3 style="margin: 0px">${localize("label_average_price", lang)}: <span id="avgText">${(avg * 100).toFixed(1)} ${this._getCurrency(lang).name}</span></h3>
                     <h5 style="margin: 0px; color:${circleColor}">${localize("label_price", lang)}: <span>${(data[currentIndex].price_per_kwh * 100).toFixed(1)} ${this._getCurrency(lang).name} (${this._getDataTimeLabel(data, currentIndex)})</span></h5>
@@ -1346,7 +1673,7 @@ class PriceTimelineCard extends LitElement {
   // RENDER
   // ---------------------
   render() {
-    if (!this._hass) return html``;
+    if (!this._hass) return b``;
     const lang = this._lang;
 
     const entity = this._hass.states[this.config.price];
@@ -1362,7 +1689,7 @@ class PriceTimelineCard extends LitElement {
 
     // no data attribute
     if (!entity || !entity.attributes?.data) {
-      return html`<ha-card>${this._renderNoAttributes(lang)}</ha-card>`;
+      return b`<ha-card>${this._renderNoAttributes(lang)}</ha-card>`;
     }
 
     let offset = (this.config.view === "graph") ? 2 : this._dayOffset;
@@ -1374,11 +1701,11 @@ class PriceTimelineCard extends LitElement {
 
     // no data
     if (!data.length) {
-      return html`<ha-card>${this._renderNoData(lang)}</ha-card>`;
+      return b`<ha-card>${this._renderNoData(lang)}</ha-card>`;
     }
     // no price per kwh attribute or wrong format
     if (!this._hasPriceData(data)) {
-      return html`<ha-card>${this._renderNoPrices(lang)}</ha-card>`;
+      return b`<ha-card>${this._renderNoPrices(lang)}</ha-card>`;
     }
 
     const currentIndex = this.config.slider
@@ -1388,7 +1715,7 @@ class PriceTimelineCard extends LitElement {
     let dataIntervalls;
     if(this.config.cheap_time_sources){
         dataIntervalls = this._buildGroupedTimeSlots(offset);
-    }else{
+    }else {
         dataIntervalls = this._getCheapPhasesPerDay(data);
     }
 
@@ -1408,7 +1735,7 @@ class PriceTimelineCard extends LitElement {
         cardContent = this._renderTimeline(data, currentIndex, avg, lang);
     }
 
-    return html`
+    return b`
         <ha-card>
                 <div>
                   <div @pointerup=${(ev) => this._onTap(ev)}>${cardContent}</div>
@@ -1453,7 +1780,7 @@ customElements.define("price-timeline-card", PriceTimelineCard);
 // ---------------------
 // EDITOR
 // ---------------------
-class PriceTimelineEditor extends LitElement {
+class PriceTimelineEditor extends i {
   static get properties() {
     return {
       _config: { type: Object },
@@ -1496,7 +1823,7 @@ class PriceTimelineEditor extends LitElement {
 
 
   render() {
-    if (!this._config) return html``;
+    if (!this._config) return b``;
     const lang = this._hass?.language || "en";
 
     let mode = this._config.view;
@@ -1574,7 +1901,7 @@ class PriceTimelineEditor extends LitElement {
       },
     };
 
-    return html`
+    return b`
         <ha-form
           .hass=${this._hass}
           .data=${data}
