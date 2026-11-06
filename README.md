@@ -14,6 +14,28 @@ Supports multiple languages and three different modes and dark&light theme or de
 
 ---
 
+## 🔧 Changes in this fork (Kieft-C)
+
+This fork is based on [Neisi/ha-price-timeline-card](https://github.com/Neisi/ha-price-timeline-card) and contains the following changes:
+
+- **Threshold lines in graph view:** Up to 4 horizontal lines via the new `thresholds` option, each with its own `color` and optional `label`.
+- **Entity-based thresholds:** `value` can be a number (in cent/kWh) or a sensor entity whose state is read live (in €/kWh, converted to cent).
+- **Bundled build for HACS:** The source moved to `src/`. The root `price-timeline-card.js` is bundled with rollup, so all dependencies (incl. `lit`) are included and it loads in Home Assistant without further setup.
+- **Config example:**
+
+```yaml
+thresholds:
+  - value: sensor.schwelle_guenstig
+    color: green
+    label: günstig
+  - value: 30
+    color: "#8B00FF"
+```
+
+> **Hinweis zur Entstehung:** Die oben beschriebenen Änderungen wurden mit Hilfe von KI (Claude, Anthropic) erstellt und vom Repository-Eigentümer geprüft und übernommen. Die Änderungen sind in der Git-Historie mit `Co-Authored-By: Claude` gekennzeichnet.
+
+---
+
 ## 🚀 Features
 Inspired by Tibber, this custom card visualizes **hourly energy prices** on a timeline or circle.
 
